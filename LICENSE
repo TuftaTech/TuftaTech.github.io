@@ -1,0 +1,42 @@
+MIT License
+
+Copyright (c) 2026 TuftaTech
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+--- Exception: the files in assets/img/ ---
+
+The licence above covers the code and the text of this site. It does NOT cover
+the images.
+
+  assets/img/yukari-hero.webp
+      A drawing by the author, who reserves all rights to it. The character
+      Yukari Akiyama is the property of the rights holders of Girls und Panzer;
+      this is a non-commercial fan work, published without their endorsement.
+
+  assets/img/worldmap.webp
+      Computed from Natural Earth 1:110m coastline data, which is in the public
+      domain (naturalearthdata.com).
+
+  assets/img/shot-*.webp
+      Screenshots of the YukariBox application, which is licensed
+      GPL-3.0-or-later. See github.com/TuftaTech/YukariBox.
+
+The icon outlines inlined in index.html are from Google's Material Symbols,
+licensed under the Apache License 2.0.

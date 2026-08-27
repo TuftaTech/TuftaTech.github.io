@@ -1,0 +1,24 @@
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editors
+.idea/
+.vscode/
+*.swp
+
+# Local agent/tooling config (machine-specific, not part of the site)
+/.claude/
+/.mcp.json
+
+# Playwright MCP scratch. Everything in this tree is served as-is by Pages, so a
+# stray snapshot or screenshot here would be published, not merely committed.
+/.playwright-mcp/
+
+# Throwaway on-device screenshots, before they are cropped and converted
+/.shots/
+
+# Python bytecode from tools/
+__pycache__/
+*.pyc

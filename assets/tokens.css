@@ -1,0 +1,92 @@
+/* Every colour value in this project lives in this file. Values copied from
+   ui/theme/Color.kt, not re-derived; the dark ramp is `inherited` and must not be
+   produced by inverting the light one. tools/check.py asserts R == G == B here and
+   asserts that no other file holds a literal at all.
+
+   Two pairs are easy to confuse and must not be: `--ink` is the colour of text, which
+   flips with the theme, while `--ink-fill` is the near-black plate that stays near-black
+   in both -- the app's rule that chrome does not flip. `--cta-bg` is the exception that
+   proves it: the download button is the page's one action, not chrome, so it inverts.
+*/
+:root {
+  color-scheme: light dark;
+
+  --page:           #FEFEFE;
+  --paper:          #FEFEFE;
+  --hairline:       #EDEDED;
+  --ink:            #0D0D0D;
+  --ink-fill:       #0D0D0D;
+  --on-ink:         #FFFFFF;
+  --text-secondary: #5C5C5C;
+  --text-tertiary:  #808080;
+  --icon-muted:     #757575;
+  --chip:           #ECECEC;
+  --cta-bg:         #0D0D0D;
+  --cta-fg:         #FFFFFF;
+  --dot:            #C0C0C0;
+
+  /* Shape: two silhouettes and nothing else. No pills -- measured, not taste. */
+  --r-card:   11px;
+  --r-row:    10px;
+  --r-chip:   5px;
+
+  /* Rhythm, from the design system's measured spacing table. */
+  --gap-content: 24px;
+  --pad-card:    16px;
+  --pitch-row:   42px;
+
+  /* One duration, one curve. */
+  --swap: 160ms;
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+
+  /* Not a colour: the alpha ramp that fades the hero map's side edges into the page. It
+     lives here because the checker's rule is that no value with colour syntax appears
+     outside this file, and weakening that rule to keep a gradient next to its element
+     would cost more than the one indirection. Only its alpha is read -- it masks. */
+  --mask-edge-fade: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
+
+  /* Roughly 1 dp of elevation: integrated ink about twice the hairline, spread
+     over ~5 px. Lives here so no other file holds a colour value of any kind. */
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+/* Followed unless the visitor has chosen a theme; `:not([data-theme="light"])` is what
+   lets an explicit light choice win over a dark system. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --page:           #121212;
+    --paper:          #1D1D1D;
+    --hairline:       #2E2E2E;
+    --ink:            #F2F2F2;
+    --ink-fill:       #0B0B0B;
+    --on-ink:         #F2F2F2;
+    --text-secondary: #9E9E9E;
+    --text-tertiary:  #9E9E9E;
+    --icon-muted:     #9E9E9E;
+    --chip:           #272727;
+    --cta-bg:         #F2F2F2;
+    --cta-fg:         #121212;
+    --dot:            #4A4A4A;
+  }
+}
+
+/* Chosen explicitly, from the control in the bar. */
+:root[data-theme="dark"] {
+  --page:           #121212;
+  --paper:          #1D1D1D;
+  --hairline:       #2E2E2E;
+  --ink:            #F2F2F2;
+  --ink-fill:       #0B0B0B;
+  --on-ink:         #F2F2F2;
+  --text-secondary: #9E9E9E;
+  --text-tertiary:  #9E9E9E;
+  --icon-muted:     #9E9E9E;
+  --chip:           #272727;
+  --cta-bg:         #F2F2F2;
+  --cta-fg:         #121212;
+  --dot:            #4A4A4A;
+}
+
+/* So the scrollbars and any form control follow the choice too. */
+:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="dark"]  { color-scheme: dark; }

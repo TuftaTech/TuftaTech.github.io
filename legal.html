@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Licences and privacy — YukariBox</title>
+<meta name="description" content="What YukariBox and this site collect (nothing), the permissions and why, and the licences.">
+<link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="apple-touch-icon" href="assets/img/icon-180.png">
+<link rel="stylesheet" href="assets/site.css">
+<script>try{var t=localStorage.getItem("yukaribox.theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t;}catch(e){}</script>
+<script src="assets/site.js" defer></script>
+</head>
+<body>
+<header class="barwrap">
+  <div class="bar wrap">
+  <a class="wordmark" href="index.html">YukariBox</a>
+  <span class="barlinks">
+    <span class="langswitch">
+      <button type="button" data-set-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-set-lang="ru" aria-pressed="false">RU</button>
+    </span>
+      <button type="button" class="themebtn" id="themebtn"><svg viewBox="0 -960 960 960" aria-hidden="true" focusable="false"><path d="M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm40-83q119-15 199.5-104.5T800-480q0-123-80.5-212.5T520-797v634Z"/></svg></button>
+    <a class="micro" href="help.html"><span lang="en" data-lang="en" data-key="nav.help">Help</span><span lang="ru" data-lang="ru" data-key="nav.help">Помощь</span></a>
+    <a class="micro" href="https://github.com/TuftaTech/YukariBox"><span lang="en" data-lang="en" data-key="nav.source">Source</span><span lang="ru" data-lang="ru" data-key="nav.source">Исходники</span></a>
+  </span>
+  </div>
+</header>
+<main class="wrap">
+<h1 class="pagetitle"><span lang="en" data-lang="en" data-key="page.legal">Licences, privacy and permissions</span><span lang="ru" data-lang="ru" data-key="page.legal">Лицензии, приватность и разрешения</span></h1>
+<section class="block" id="collect">
+  <h2 class="micro"><span lang="en" data-lang="en" data-key="sec.collect">What the app collects</span><span lang="ru" data-lang="ru" data-key="sec.collect">Что собирает приложение</span></h2>
+  <div class="card">
+    <p><span lang="en" data-lang="en" data-key="collect.nothing">Nothing. There is no account, no identifier, no analytics, no crash reporting and no update check &mdash; and no library in the build that could send any of those, which you can read off the dependency list in the source.</span><span lang="ru" data-lang="ru" data-key="collect.nothing">Ничего. Нет учётной записи, нет идентификатора, нет аналитики, нет отчётов о сбоях и нет проверки обновлений — и в сборке нет библиотеки, которая могла бы что-то из этого отправить; это видно по списку зависимостей в исходниках.</span></p>
+    <p><span lang="en" data-lang="en" data-key="collect.outbound">The complete list of what it can reach on its own: the subscription URL you entered, the DNS-over-HTTPS server you chose, the connectivity-check URL you can change, and the proxy node you picked. Your servers and their credentials live in the app&rsquo;s private storage and are readable by nothing else on the device.</span><span lang="ru" data-lang="ru" data-key="collect.outbound">Полный список того, куда оно может обратиться само: введённый вами URL подписки, выбранный вами сервер DNS-over-HTTPS, URL проверки связи, который вы можете поменять, и выбранный вами прокси-узел. Ваши серверы и их учётные данные лежат в приватном хранилище приложения, и на устройстве их не читает ничто другое.</span></p>
+    <p><span lang="en" data-lang="en" data-key="collect.journal">The journal is off by default and records nothing at all. Turned on, it writes to the device only, and turning it off again erases what it wrote.</span><span lang="ru" data-lang="ru" data-key="collect.journal">Журнал по умолчанию выключен и не записывает вообще ничего. Включённый, он пишет только на устройство, а повторное выключение стирает написанное.</span></p>
+  </div>
+</section>
+<section class="block" id="site">
+  <h2 class="micro"><span lang="en" data-lang="en" data-key="sec.site">What this site collects</span><span lang="ru" data-lang="ru" data-key="sec.site">Что собирает этот сайт</span></h2>
+  <div class="card">
+    <p><span lang="en" data-lang="en" data-key="site.nothing">Nothing. No cookies, no analytics, no web fonts, no third-party requests of any kind. The page is static files served by GitHub Pages.</span><span lang="ru" data-lang="ru" data-key="site.nothing">Ничего. Ни cookie, ни аналитики, ни веб-шрифтов, ни сторонних запросов какого-либо рода. Страница — это статические файлы, которые отдаёт GitHub Pages.</span></p>
+    <p><span lang="en" data-lang="en" data-key="site.github">Two things do involve GitHub, and you should know about both. If JavaScript is on, the page makes one request to <code>api.github.com</code> to read the current version, size and checksum; with JavaScript off it makes none and the download still works. And the file itself is served by GitHub, so GitHub sees the download the way it sees any other. Neither is something this site can see or store.</span><span lang="ru" data-lang="ru" data-key="site.github">Две вещи всё-таки касаются GitHub, и о них стоит знать. При включённом JavaScript страница делает один запрос к <code>api.github.com</code>, чтобы прочитать текущую версию, размер и контрольную сумму; с выключенным — ни одного, и скачивание всё равно работает. А сам файл отдаёт GitHub, поэтому GitHub видит скачивание так же, как любое другое. Ни то, ни другое этот сайт не видит и не хранит.</span></p>
+    <p><span lang="en" data-lang="en" data-key="site.lang">Your language choice is remembered in your own browser&rsquo;s local storage. It never leaves it.</span><span lang="ru" data-lang="ru" data-key="site.lang">Выбранный язык запоминается в локальном хранилище вашего браузера. Оно его не покидает.</span></p>
+  </div>
+</section>
+<section class="block" id="perms">
+  <h2 class="micro"><span lang="en" data-lang="en" data-key="sec.perms">Permissions</span><span lang="ru" data-lang="ru" data-key="sec.perms">Разрешения</span></h2>
+  <div class="card">
+    <p lang="en" data-lang="en" data-key="perm.intro">Seven permissions, and what each is for. There is no location, camera, contacts, microphone or storage permission &mdash; the app asks for none of those. Two more names appear in the manifest, <code>BIND_VPN_SERVICE</code> and <code>BIND_QUICK_SETTINGS_TILE</code>, but those run the other way round: they are what the system must hold in order to bind the tunnel service and the tile, not something the app asks of you.</p><p lang="ru" data-lang="ru" data-key="perm.intro">Семь разрешений и зачем каждое. Здесь нет ни геолокации, ни камеры, ни контактов, ни микрофона, ни доступа к хранилищу: приложение их не запрашивает. В манифесте есть ещё два имени, <code>BIND_VPN_SERVICE</code> и <code>BIND_QUICK_SETTINGS_TILE</code>, но они работают в обратную сторону: это то, что должна иметь система, чтобы привязаться к службе туннеля и к плитке, а не то, что приложение просит у вас.</p>
+    <dl>
+      <dt><code>INTERNET</code></dt>
+      <dd><span lang="en" data-lang="en" data-key="perm.internet">to reach the server you chose.</span><span lang="ru" data-lang="ru" data-key="perm.internet">чтобы дойти до выбранного вами сервера.</span></dd>
+      <dt><code>ACCESS_NETWORK_STATE</code></dt>
+      <dd><span lang="en" data-lang="en" data-key="perm.access_network_state">to notice a Wi-Fi to mobile handover and to pick a working network over a captive-portal one.</span><span lang="ru" data-lang="ru" data-key="perm.access_network_state">чтобы заметить переход Wi-Fi — мобильная связь и выбрать рабочую сеть вместо сети с captive-portal.</span></dd>
+      <dt><code>FOREGROUND_SERVICE</code></dt>
+      <dd><span lang="en" data-lang="en" data-key="perm.foreground_service">so the tunnel is not killed while it is carrying your traffic.</span><span lang="ru" data-lang="ru" data-key="perm.foreground_service">чтобы туннель не убили, пока он несёт ваш трафик.</span></dd>
+      <dt><code>FOREGROUND_SERVICE_SPECIAL_USE</code></dt>
+      <dd><span lang="en" data-lang="en" data-key="perm.foreground_service_special_use">the category Android 14 requires a VPN service to declare for that foreground service.</span><span lang="ru" data-lang="ru" data-key="perm.foreground_service_special_use">категория, которую Android 14 требует объявить для этой службы переднего плана.</span></dd>
+      <dt><code>POST_NOTIFICATIONS</code></dt>
+      <dd><span lang="en" data-lang="en" data-key="perm.post_notifications">for the ongoing notification and for the one that says protection failed.</span><span lang="ru" data-lang="ru" data-key="perm.post_notifications">для постоянного уведомления и для того, что сообщает о неудавшейся защите.</span></dd>
+      <dt><code>RECEIVE_BOOT_COMPLETED</code></dt>
+      <dd><span lang="en" data-lang="en" data-key="perm.receive_boot_completed">only used if you turn auto-connect on; otherwise nothing happens at boot.</span><span lang="ru" data-lang="ru" data-key="perm.receive_boot_completed">используется только если вы включили автоподключение; иначе при загрузке не происходит ничего.</span></dd>
+      <dt><code>QUERY_ALL_PACKAGES</code></dt>
+      <dd><span lang="en" data-lang="en" data-key="perm.query_all_packages">so the per-app routing screen can list your installed apps. This is the one permission here that looks invasive, and it is: it is the only way Android will show that list. The list is read on that screen and never leaves the device.</span><span lang="ru" data-lang="ru" data-key="perm.query_all_packages">чтобы экран маршрутизации по приложениям мог показать установленные приложения. Это единственное разрешение здесь, которое выглядит навязчивым, и так и есть: иначе Android этот список не отдаёт. Список читается на том экране и никогда не покидает устройство.</span></dd>
+    </dl>
+  </div>
+</section>
+<section class="block" id="licences">
+  <h2 class="micro"><span lang="en" data-lang="en" data-key="sec.licences">Licences</span><span lang="ru" data-lang="ru" data-key="sec.licences">Лицензии</span></h2>
+  <div class="card">
+    <p><span lang="en" data-lang="en" data-key="lic.app">The application is <b>GPL-3.0-or-later</b>, because it links the GPL-licensed sing-box core. The full text ships in the repository. You may use, study, change and redistribute it under those terms.</span><span lang="ru" data-lang="ru" data-key="lic.app">Приложение под <b>GPL-3.0-or-later</b>, потому что линкует ядро sing-box под GPL. Полный текст лежит в репозитории. Вы можете использовать, изучать, изменять и распространять его на этих условиях.</span></p>
+    <p><span lang="en" data-lang="en" data-key="lic.site">The code and the text of this site are MIT. The images are not: the drawing of the character is the author&rsquo;s own work with all rights reserved, the character Yukari Akiyama belongs to the rights holders of Girls und Panzer and appears here in a non-commercial fan project without their endorsement, and the world map is computed from public-domain Natural Earth coastline data.</span><span lang="ru" data-lang="ru" data-key="lic.site">Код и текст этого сайта под MIT. Изображения — нет: рисунок персонажа является собственной работой автора со всеми правами, персонаж Юкари Акияма принадлежит правообладателям Girls und Panzer и появляется здесь в некоммерческом фан-проекте без их одобрения, а карта мира вычислена из общедоступных данных Natural Earth.</span></p>
+    <p><span lang="en" data-lang="en" data-key="lic.third">Third-party notices: <a href="https://github.com/SagerNet/sing-box">sing-box</a> (GPL-3.0-or-later), <a href="https://github.com/zxing/zxing">ZXing</a> (Apache-2.0) for QR codes, <a href="https://github.com/google/material-design-icons">Material Symbols</a> (Apache-2.0) for the icon outlines, AndroidX and Jetpack Compose (Apache-2.0), and <a href="https://github.com/Kotlin/kotlinx.serialization">kotlinx.serialization</a> (Apache-2.0).</span><span lang="ru" data-lang="ru" data-key="lic.third">Уведомления о сторонних компонентах: <a href="https://github.com/SagerNet/sing-box">sing-box</a> (GPL-3.0-or-later), <a href="https://github.com/zxing/zxing">ZXing</a> (Apache-2.0) для QR-кодов, <a href="https://github.com/google/material-design-icons">Material Symbols</a> (Apache-2.0) для контуров значков, AndroidX и Jetpack Compose (Apache-2.0) и <a href="https://github.com/Kotlin/kotlinx.serialization">kotlinx.serialization</a> (Apache-2.0).</span></p>
+  </div>
+</section>
+<section class="block" id="warranty">
+  <h2 class="micro"><span lang="en" data-lang="en" data-key="sec.warranty">No warranty</span><span lang="ru" data-lang="ru" data-key="sec.warranty">Без гарантий</span></h2>
+  <div class="card">
+    <p><span lang="en" data-lang="en" data-key="war.asis">The software is provided as is, without warranty of any kind. Nobody here promises that a given server will work, that a given network will let it through, or that it is fit for any particular purpose. That is not a disclaimer bolted on for form: this is a tool that talks to servers you supply over networks neither of us controls.</span><span lang="ru" data-lang="ru" data-key="war.asis">Программа предоставляется как есть, без каких-либо гарантий. Никто здесь не обещает, что конкретный сервер заработает, что конкретная сеть его пропустит или что он пригоден для какой-то определённой задачи. Это не отписка ради формы: инструмент разговаривает с серверами, которые даёте вы, по сетям, которыми не управляет ни один из нас.</span></p>
+    <p><span lang="en" data-lang="en" data-key="war.law">You are responsible for using it in accordance with the law where you are. The app is a proxy client; it does not provide servers, and it takes no position on what you do through them.</span><span lang="ru" data-lang="ru" data-key="war.law">Вы отвечаете за использование в соответствии с законом там, где вы находитесь. Приложение — прокси-клиент; серверов оно не предоставляет и не занимает позиции по тому, что вы через них делаете.</span></p>
+    <p><span lang="en" data-lang="en" data-key="war.notlegal">This page is written in plain language by the project&rsquo;s author, not by a lawyer, and it is not legal advice. Where it and the licence texts in the repository disagree, the licence texts are what binds.</span><span lang="ru" data-lang="ru" data-key="war.notlegal">Эта страница написана простым языком автором проекта, а не юристом, и юридической консультацией не является. Где она расходится с текстами лицензий в репозитории, обязывают тексты лицензий.</span></p>
+  </div>
+</section>
+</main>
+<footer class="wrap">
+  <p><a href="legal.html"><span lang="en" data-lang="en" data-key="footer.legal">Licences, privacy and permissions</span><span lang="ru" data-lang="ru" data-key="footer.legal">Лицензии, приватность и разрешения</span></a></p>
+</footer>
+</body>
+</html>

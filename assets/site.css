@@ -1,0 +1,305 @@
+@import url("tokens.css");
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  font-size: 100%;
+  background: var(--page);
+
+  -webkit-text-size-adjust: 100%;
+}
+
+/* The app's scale is calibrated for a phone at arm's length. Keep every ratio
+   and weight from it, lift the whole set one step on wide viewports. */
+@media (min-width: 700px) { html { font-size: 112.5%; } }
+
+body {
+  margin: 0;
+  /* The hero's map is deliberately wider than the page (see .hero-map). Clipping
+     here, not on the hero, is what lets it run off both edges without ever adding a
+     horizontal scrollbar. On the root this does not work: with `overflow-y` visible
+     the pair is invalid and a 12px scroll came back at 900px, measured. */
+  overflow-x: clip;
+  font-family: system-ui, sans-serif;
+  font-size: 0.8125rem;          /* 13 sp settings-row body */
+  line-height: 1.55;
+  color: var(--ink);
+  background: var(--page);
+}
+
+/* Language: both texts ship in the HTML; the other one is hidden, never absent. */
+html[lang="en"] [data-lang="ru"], html[lang="ru"] [data-lang="en"] { display: none; }
+
+.wrap { max-width: 47rem; margin: 0 auto; padding: 0 var(--gap-content); }
+
+/* Top bar. No divider: the page and the bar are the same value, so a hairline
+   is the only thing separating them. */
+/* The rule runs the width of the page, not of the column: with a full-bleed map under it
+   a column-width hairline read as a line floating in the middle of nothing. */
+.barwrap { border-bottom: 1px solid var(--hairline); }
+
+.bar {
+  /* Wraps rather than overflows: the Russian labels are wider than the English ones,
+     and at 360-414 px the row's min-content was 428 px, which pushed the whole
+     document into a horizontal scroll. Measured, not guessed. */
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; row-gap: 0.5rem;
+  gap: var(--gap-content);
+  min-height: 3.5rem;
+}
+.wordmark {
+  font-size: 1.25rem; font-weight: 700; letter-spacing: 0;
+  text-transform: uppercase; color: var(--ink); text-decoration: none;
+}
+.barlinks { display: flex; align-items: center; flex-wrap: wrap; gap: 0.6rem 1rem; }
+
+/* Small uppercase label. +0.11em is the measured ceiling; do not raise it. */
+.micro {
+  font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.11em; color: var(--text-tertiary);
+}
+
+.langswitch { display: flex; gap: 0.5rem; }
+.langswitch button {
+  font: inherit; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.11em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.5rem; border: 1px solid var(--hairline);
+  border-radius: var(--r-chip);
+  background: var(--paper); color: var(--text-tertiary); cursor: pointer;
+  transition: background var(--swap) var(--ease), color var(--swap) var(--ease);
+}
+.langswitch button[aria-pressed="true"] { background: var(--ink-fill); color: var(--on-ink); border-color: var(--ink-fill); }
+
+/* A card is legible because of its hairline plus a very soft shadow, never
+   because the page behind it is grey. Drop the hairline and the card vanishes. */
+.card {
+  background: var(--paper);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-card);
+  padding: var(--pad-card);
+}
+
+.row {
+  display: flex; align-items: center; gap: 0.85rem;
+  min-height: var(--pitch-row);
+  border-bottom: 1px solid var(--hairline);
+}
+.row:last-child { border-bottom: 0; }
+.row svg { flex: none; width: 1.25rem; height: 1.25rem; fill: var(--icon-muted); }
+
+.chip {
+  display: inline-block;
+  background: var(--chip); color: var(--ink);
+  border-radius: var(--r-chip);
+  padding: 0.3rem 0.5rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.circle { border-radius: 50%; }
+
+footer { border-top: 1px solid var(--hairline); margin-top: 3rem; padding: 1.5rem 0 3rem; }
+footer, footer a { color: var(--text-tertiary); font-size: 0.78rem; }
+
+a { color: var(--ink); }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+
+/* No `overflow: hidden` here: it is what used to crop the map at the content column.
+   `min-height` is what keeps the mascot whole, and the page's own `overflow-x: clip`
+   is what stops the map's bleed reaching the scrollbar. */
+/* Full-bleed: the hero sits outside the content column so its map can be exactly page
+   wide without `100vw`, which includes the scrollbar and left an 8px overflow at every
+   width, measured. `overflow: hidden` is back and clips only the map's vertical excess;
+   the mascot is inside .hero-inner, on the column, so it cannot reach the screen edge.
+   The height grows with the width so a page-wide 2:1 map has somewhere to be, and stops
+   growing at 34rem -- past that the map's Arctic end is cropped, which is the emptiest
+   part of the asset. */
+.hero {
+  position: relative; overflow: hidden;
+  padding: 3rem 0 2rem;
+  /* The stage's height, named once: the copy block claims it as a minimum and the map is
+     sized against it, so the two cannot drift apart. */
+  --stage-h: clamp(18rem, 40vw, 29rem);
+  --map-aspect: 2.029;
+}
+
+/* The stage's height lives here, not on .hero, so that `bottom: 0` on the mascot means the
+   bottom of the stage rather than the bottom of the paragraph above her. */
+.hero-inner { position: relative; min-height: var(--stage-h); }
+
+/* The map is a pure alpha mask, so one file serves both themes and the colour
+   comes from the token -- exactly as YukariWorldMap does it in the app. */
+.hero-map {
+  /* Sized by its height, not by the page width, and that is the whole trick. The map is
+     2.03:1 and a wide hero is nowhere near that, so a page-wide map is always taller than
+     the band and gets cropped at the top -- which on a wide monitor threw away a third of
+     the northern hemisphere. Fixing the height instead means the whole world is always in
+     frame, at a size that reads as a map rather than as a zoomed fragment.
+
+     Two elements because two masks: this one fades the side edges so the map dissolves into
+     the page instead of ending in a straight cut through a continent, and the span carries
+     the world. Nesting rather than `mask-composite`, which the two engines spell
+     differently. */
+  position: absolute; bottom: 2rem; left: 50%;
+  transform: translateX(-50%);
+  /* As tall as the stage, so it sits behind the heading and the lede rather than only
+     behind the button -- and no taller, so the whole world stays in frame. Driven from the
+     width because that is the axis with a hard limit: `100%` is the page, and a map wider
+     than the page would be clipped rather than faded. Below roughly 760px the page wins and
+     the map covers the lower part of the stage only, which is the right trade on a phone,
+     where three lines of copy need the contrast more than the picture needs the room.
+     `bottom: 2rem` matches the hero's bottom padding, which lines the map up with the
+     stage box rather than with the section. */
+  width: min(100%, calc(var(--stage-h) * var(--map-aspect)));
+  aspect-ratio: 1627 / 802;
+  -webkit-mask: var(--mask-edge-fade);
+  mask: var(--mask-edge-fade);
+  pointer-events: none;
+}
+
+.hero-map span {
+  display: block; width: 100%; height: 100%;
+  /* Lighter than the app's 0.9, and the number is measured rather than judged. At this
+     grain there are three times as many mesh lines across the world, so the same per-line
+     ink adds up to a heavier picture -- and the map now sits behind the lede, which is
+     `--text-secondary` at 13px, the smallest thing on the page that has to stay readable.
+     Sampling the rendered pixels behind that paragraph with the text hidden: 0.65 put the
+     worst pixel at 4.60:1, a tenth over the 4.5 floor, and 0.55 puts it at 4.88:1 with a
+     mean of 6.41. The map still reads at 0.55; a threshold with no margin does not. */
+  background: var(--dot); opacity: 0.55;
+  -webkit-mask: url("img/worldmap.webp") no-repeat center / 100% 100%;
+  mask: url("img/worldmap.webp") no-repeat center / 100% 100%;
+}
+
+
+/* She is never tinted: no filter, no mask. Bound to the scheme she inverts into
+   a photographic negative rather than the same character. */
+.hero-mascot {
+  /* Anchored to the content column, not the screen: on a wide display a screen-flush
+     figure would stand half a metre from the sentence it belongs to. */
+  position: absolute; right: 0; bottom: 0;
+  height: 17rem; width: auto;
+  pointer-events: none; user-select: none;
+}
+
+.hero-copy { position: relative; max-width: 26rem; }
+.hero-copy h1 { font-size: 1.75rem; font-weight: 700; line-height: 1.2; margin: 0 0 0.75rem; }
+.hero-lede { color: var(--text-secondary); margin: 0 0 1.75rem; }
+
+.dlbutton {
+  display: inline-block;
+  background: var(--cta-bg); color: var(--cta-fg);
+  border-radius: var(--r-card);
+  padding: 0.9rem 1.6rem;
+  font-size: 1rem; font-weight: 600; text-decoration: none;
+  transition: opacity var(--swap) var(--ease);
+}
+.dlbutton:hover { opacity: 0.88; }
+
+.dlmeta { margin: 0.9rem 0 0.3rem; }
+.dlmeta span:not(:empty)::after { content: " · "; }
+
+.verify { margin: 2rem 0; }
+.verify pre { margin: 0.75rem 0 0; overflow-x: auto; font-size: 0.72rem; color: var(--text-secondary); }
+/* The checksum is 64 hex characters with no break opportunity anywhere in them, so an
+   inline-block sized to its own content walks straight out of the card. Measured at a 390px
+   viewport before this line: 473px wide inside a 325px content box, 163px past the card's right
+   edge, and a document 124px wider than the window. `overflow-x: clip` on the body then makes it
+   worse rather than better -- the tail is not off to one side waiting to be scrolled to, it is
+   cut off and unreachable, which is the one thing a checksum must never be. `anywhere` rather
+   than `break-word` because only `anywhere` also shrinks the element's min-content width, which
+   is what stops the inline-block from asking for the wide size in the first place. */
+.verify .chip { overflow-wrap: anywhere; }
+.copybtn {
+  font: inherit; font-size: 0.72rem; margin-left: 0.5rem;
+  border: 1px solid var(--hairline); border-radius: var(--r-chip);
+  background: var(--paper); color: var(--text-tertiary); cursor: pointer; padding: 0.25rem 0.5rem;
+}
+
+@media (max-width: 700px) {
+  .hero-mascot { height: 12rem; opacity: 0.5; }
+  .hero-copy { max-width: none; }
+}
+
+.copybtn.copied { background: var(--ink-fill); color: var(--on-ink); border-color: var(--ink-fill); }
+
+/* Screens, each in the one content surface the app has. */
+.shots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 3rem 0; }
+.shot { padding: 0.75rem; margin: 0; }
+.shot img { display: block; width: 100%; height: auto; border-radius: var(--r-row); }
+.shot figcaption { margin: 0.6rem 0 0; text-align: center; }
+
+/* Rows, not tiles: the settings-row language of the app, at its 42px pitch. */
+.features { margin: 3rem 0; }
+.seclabel { margin: 0 0 var(--gap-content); }
+.rows { padding: 0 var(--pad-card); }
+.rowtext { display: block; padding: 0.7rem 0; }
+.rowtext b { display: block; font-weight: 600; }
+.rowtext small { display: block; color: var(--text-secondary); font-size: 0.78rem; }
+
+@media (max-width: 700px) { .shots { grid-template-columns: 1fr; } }
+
+/* Help: a section label over one card per block, at the app's label-to-row rhythm. */
+.block { margin: 0 0 2rem; }
+/* The first label sat against the bar's hairline; the page needs the same breathing
+   room above its first section as the hero gets. */
+.block:first-of-type { margin-top: 2rem; }
+.block > .micro { margin: 0 0 var(--gap-content); }
+.block p { margin: 0 0 0.9rem; }
+.block p:last-child { margin-bottom: 0; }
+.block pre { margin: 0.9rem 0 0; overflow-x: auto; font-size: 0.72rem; color: var(--text-secondary); }
+
+/* The help page needs a heading of its own; the section labels are h2 under it. */
+.pagetitle { font-size: 1.5rem; font-weight: 700; margin: 2rem 0 0; }
+.pagetitle + .block:first-of-type { margin-top: 1.5rem; }
+
+/* ---- Home: why this one ------------------------------------------------- */
+
+/* Not the 42px settings-row pitch: each of these is a claim with its reasoning
+   under it, so it needs the room a row does not have. Same card, same hairline,
+   same leading glyph. */
+.advantages { margin: 3rem 0; }
+.advlist { padding: 0 var(--pad-card); }
+.adv { display: flex; gap: 0.9rem; padding: 1.15rem 0; border-bottom: 1px solid var(--hairline); }
+.adv:last-child { border-bottom: 0; }
+.adv > svg { flex: none; width: 1.25rem; height: 1.25rem; margin-top: 0.15rem; fill: var(--icon-muted); }
+.adv h3 { margin: 0 0 0.35rem; font-size: 0.9rem; font-weight: 600; }
+.adv p { margin: 0; color: var(--text-secondary); }
+
+/* ---- Help: table of contents ------------------------------------------- */
+
+.toc { margin: 1.5rem 0 2.5rem; }
+.toc ol { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+.toc li { margin: 0 0 0.35rem; break-inside: avoid; }
+.toc a { color: var(--text-secondary); text-decoration: none; border-bottom: 1px solid var(--hairline); }
+.toc a:hover { color: var(--ink); }
+@media (max-width: 700px) { .toc ol { columns: 1; } }
+
+/* A section the table of contents jumps to should not land under the bar. */
+.block { scroll-margin-top: 1rem; }
+
+/* ---- Legal ------------------------------------------------------------- */
+
+.block dl { margin: 0; }
+.block dt { font-weight: 600; margin: 0.9rem 0 0.2rem; }
+.block dt:first-child { margin-top: 0; }
+.block dd { margin: 0 0 0 0; color: var(--text-secondary); }
+.block ul { margin: 0.4rem 0 0.9rem; padding-left: 1.3rem; color: var(--text-secondary); }
+.block li { margin: 0 0 0.3rem; }
+
+/* The theme control. Same shape as the language buttons beside it. It carries no
+   active state of its own: with two themes the page is the state, and the button only
+   has to say what the next click does. */
+.themebtn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 1.9rem; height: 1.65rem; padding: 0;
+  border: 1px solid var(--hairline); border-radius: var(--r-chip);
+  background: var(--paper); cursor: pointer;
+  transition: background var(--swap) var(--ease), border-color var(--swap) var(--ease);
+}
+.themebtn svg { width: 1rem; height: 1rem; fill: var(--text-tertiary); }
+.themebtn:hover { border-color: var(--icon-muted); }
+.themebtn:hover svg { fill: var(--ink); }
